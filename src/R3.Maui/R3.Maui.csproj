@@ -9,14 +9,11 @@
         <NoWarn>1701;1702;1591;1573;CS8002</NoWarn>
 
         <!-- NuGet Packaging -->
+        <IsPackable>true</IsPackable>
         <PackageId>R3Extensions.Maui</PackageId>
         <PackageTags>rx</PackageTags>
         <Description>.NET MAUI Provider and Methods for R3.</Description>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="../../Icon.png" Pack="true" PackagePath="/" />
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.Maui.Core" Version="8.0.3" />

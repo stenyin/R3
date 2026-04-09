@@ -11,14 +11,10 @@
         <NoWarn>1701;1702;1591;1573</NoWarn>
 
         <!-- NuGet Packaging -->
+        <IsPackable>true</IsPackable>
         <PackageTags>rx</PackageTags>
         <Description>The evolution of dotnet/reactive and UniRx.</Description>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="../../Icon.png" Pack="true" PackagePath="/" />
-        <EmbeddedResource Include="..\..\LICENSE" />
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="PolySharp" Version="1.14.1">

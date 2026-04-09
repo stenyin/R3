@@ -9,14 +9,11 @@
         <NoWarn>1701;1702;1591;1573</NoWarn>
 
         <!-- NuGet Packaging -->
+        <IsPackable>true</IsPackable>
         <PackageId>R3Extensions.Avalonia</PackageId>
         <PackageTags>rx</PackageTags>
         <Description>Avalonia Provider and Methods for R3.</Description>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="../../Icon.png" Pack="true" PackagePath="/" />
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.0.0" />

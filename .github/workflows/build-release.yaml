@@ -14,19 +14,23 @@ on:
 
 jobs:
   update-packagejson:
+    permissions:
+      actions: read
+      contents: write
     uses: Cysharp/Actions/.github/workflows/update-packagejson.yaml@main
     with:
       file-path: |
         ./src/R3.Unity/Assets/R3.Unity/package.json
         ./src/R3.Godot/addons/R3.Godot/plugin.cfg
-      dotnet-run-path:
-        ./sandbox/ReferenceBuilder/ReferenceBuilder.csproj
+      dotnet-run-path: ./sandbox/ReferenceBuilder/ReferenceBuilder.csproj
       tag: ${{ inputs.tag }}
       dry-run: ${{ inputs.dry-run }}
 
   build-dotnet:
     needs: [update-packagejson]
-    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: Cysharp/Actions/.github/actions/checkout@main
@@ -44,6 +48,9 @@ jobs:
   # release
   create-release:
     needs: [update-packagejson, build-dotnet]
+    permissions:
+      contents: write
+      id-token: write # required for NuGet Trusted Publish
     uses: Cysharp/Actions/.github/workflows/create-release.yaml@main
     with:
       commit-id: ${{ needs.update-packagejson.outputs.sha }}
@@ -56,6 +63,8 @@ jobs:
   cleanup:
     if: ${{ needs.update-packagejson.outputs.is-branch-created == 'true' }}
     needs: [update-packagejson, build-dotnet]
+    permissions:
+      contents: write
     uses: Cysharp/Actions/.github/workflows/clean-packagejson-branch.yaml@main
     with:
       branch: ${{ needs.update-packagejson.outputs.branch-name }}

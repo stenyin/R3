@@ -4,7 +4,6 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <IsPackable>false</IsPackable>
         <!-- xUnit1051 is async test for CancellationToken warning -->
         <NoWarn>9113;xUnit1051</NoWarn>
         <!-- Microsoft.Testing.Platform Support -->
